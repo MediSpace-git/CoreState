@@ -1,0 +1,179 @@
+.prism-site {
+  --ink: #06070a;
+  --ink-elevated: #0e1014;
+  --paper: #eceae4;
+  --paper-muted: rgba(236, 234, 228, 0.62);
+  --stone: #d9dde3;
+  --signal: #6f9e96;
+  --signal-deep: #2f5c56;
+  --line: rgba(236, 234, 228, 0.12);
+  --ink-soft: rgba(6, 7, 10, 0.68);
+  --ink-faint: rgba(6, 7, 10, 0.38);
+  --hero-surface: var(--ink);
+  --hero-ink: var(--paper);
+  --hero-muted: var(--paper-muted);
+  --background: var(--ink);
+  --foreground: var(--paper);
+  min-height: 100dvh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-face), "Segoe UI", system-ui, sans-serif;
+}
+
+body:has(.prism-site) {
+  background: #06070a;
+  color: #eceae4;
+}
+
+html:has(.prism-site) {
+  color-scheme: dark;
+}
+
+.prism-site h1,
+.prism-site h2,
+.prism-site h3 {
+  font-family: var(--font-display-face), "Iowan Old Style", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.prism-site #home-sections > section {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.prism-site #home-sections > #hero {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.prism-site #home-sections > section + section {
+  border-top: 1px solid var(--line);
+}
+
+.prism-site .section-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-block: 2rem;
+}
+
+.prism-site .section-inner--narrow {
+  max-width: 720px;
+}
+
+.prism-site ::selection {
+  background: color-mix(in srgb, var(--signal) 45%, transparent);
+  color: var(--ink);
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-eyebrow {
+  animation: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-brand {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.hero-headline {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.hero-copy {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+.hero-cta {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
+}
+
+.hero-text-frost {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.hero-text-frost__blur {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(62%, 46rem);
+  backdrop-filter: blur(22px) saturate(1.12);
+  -webkit-backdrop-filter: blur(22px) saturate(1.12);
+  mask-image: linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
+}
+
+.hero-text-frost__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 7, 10, 0.46) 0%, rgba(6, 7, 10, 0.2) 38%, transparent 64%),
+    linear-gradient(180deg, rgba(6, 7, 10, 0.16) 0%, transparent 22%, transparent 78%, rgba(6, 7, 10, 0.26) 100%);
+}
+
+.hero-copy-halo {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  inset: -2.75rem -2.25rem -2.25rem -1.75rem;
+  border-radius: 2rem;
+  background: radial-gradient(
+    ellipse 88% 78% at 22% 42%,
+    rgba(6, 7, 10, 0.5) 0%,
+    rgba(6, 7, 10, 0.18) 52%,
+    transparent 76%
+  );
+}
+
+@media (max-width: 767px) {
+  .hero-text-frost__blur {
+    width: 100%;
+    backdrop-filter: blur(18px) saturate(1.08);
+    -webkit-backdrop-filter: blur(18px) saturate(1.08);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 68%, transparent 92%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 68%, transparent 92%);
+  }
+
+  .hero-text-frost__wash {
+    background:
+      linear-gradient(180deg, rgba(6, 7, 10, 0.12) 0%, rgba(6, 7, 10, 0.42) 28%, rgba(6, 7, 10, 0.28) 62%, transparent 88%);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .hero-text-frost__blur {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hero-text-frost__wash {
+    background: linear-gradient(90deg, rgba(6, 7, 10, 0.62) 0%, rgba(6, 7, 10, 0.3) 48%, transparent 72%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow,
+  .hero-brand,
+  .hero-headline,
+  .hero-copy,
+  .hero-cta {
+    animation: none;
+  }
+}
