@@ -31,7 +31,7 @@ export function useStagger(scope: RefObject<HTMLElement | null>) {
           interval: 0.14,
           batchMax: 4,
           onEnter: (batch) => {
-            batch.forEach((el, i) => {
+            (batch as HTMLElement[]).forEach((el, i) => {
               const dir = el.dataset.dir;
               gsap.to(el, {
                 opacity: 1,
