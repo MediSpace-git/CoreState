@@ -6,9 +6,14 @@ export function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative isolate h-full w-full bg-[var(--hero-surface)]"
+      className="relative isolate flex h-full w-full flex-col bg-[var(--hero-surface)]"
     >
-      <HeroBackground />
+      <div
+        data-hero-visual
+        className="relative min-h-0 w-full flex-1 lg:absolute lg:inset-0 lg:flex-none"
+      >
+        <HeroBackground />
+      </div>
       <HeroContent />
     </section>
   );

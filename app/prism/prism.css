@@ -143,17 +143,27 @@ html:has(.prism-site) {
 }
 
 @media (max-width: 767px) {
-  .hero-text-frost__blur {
-    width: 100%;
-    backdrop-filter: blur(18px) saturate(1.08);
-    -webkit-backdrop-filter: blur(18px) saturate(1.08);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 68%, transparent 92%);
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 68%, transparent 92%);
+  .prism-site #home-sections > #hero {
+    height: 100svh;
+    max-height: 100svh;
+    justify-content: flex-start;
   }
 
-  .hero-text-frost__wash {
-    background:
-      linear-gradient(180deg, rgba(6, 7, 10, 0.12) 0%, rgba(6, 7, 10, 0.42) 28%, rgba(6, 7, 10, 0.28) 62%, transparent 88%);
+  .prism-site #home-sections > #hero [data-hero-visual] {
+    min-height: 52%;
+  }
+
+  .hero-copy-panel {
+    background: linear-gradient(180deg, transparent 0%, rgba(6, 7, 10, 0.55) 18%, var(--ink) 42%);
+  }
+
+  .hero-text-frost {
+    display: none;
+  }
+
+  .hero-copy-halo {
+    inset: -1.25rem -1rem -1rem -0.75rem;
+    background: none;
   }
 }
 
