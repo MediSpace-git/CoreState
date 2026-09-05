@@ -50,7 +50,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-bg text-fg">
         <noscript>
           <style>
-            {`.js [data-reveal],.js [data-stagger],.js [data-field],.js [data-proc-step],.js [data-eco-phase],.js [data-hero-copy]{opacity:1!important;transform:none!important}`}
+            {`.js [data-reveal],.js [data-stagger],.js [data-field],.js [data-eco-phase],.js [data-hero-copy]{opacity:1!important;transform:none!important}`}
           </style>
         </noscript>
         <div className="page-grid hidden lg:block" aria-hidden="true">

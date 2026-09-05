@@ -220,7 +220,6 @@ h3 {
 .js [data-reveal],
 .js [data-stagger],
 .js [data-field],
-.js [data-proc-step],
 .js [data-eco-phase],
 .js [data-hero-copy] {
   opacity: 0;
@@ -235,7 +234,6 @@ h3 {
   .js [data-reveal],
   .js [data-stagger],
   .js [data-field],
-  .js [data-proc-step],
   .js [data-eco-phase],
   .js [data-hero-copy] {
     opacity: 1;

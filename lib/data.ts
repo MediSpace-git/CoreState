@@ -22,7 +22,6 @@ export const nav = [
   { label: "Solutions", href: "/#solutions" },
   { label: "Products", href: "/#products" },
   { label: "Industries", href: "/#industries" },
-  { label: "Technology", href: "/#technology" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -157,67 +156,6 @@ export const industries = [
     name: "Enterprise Operations",
     note: "Internal platforms that connect departments, standardize processes, and give leadership a live view of the operation.",
     signals: ["Cross-team workflows", "Process standardization", "Live visibility"],
-  },
-];
-
-export const technology = [
-  {
-    layer: "Frontend",
-    approach:
-      "TypeScript-first web interfaces built for speed, clarity, and long-term maintainability.",
-  },
-  {
-    layer: "Backend",
-    approach:
-      "API-driven services with clear boundaries, designed to be extended rather than rewritten.",
-  },
-  {
-    layer: "Mobile",
-    approach:
-      "Purpose-built mobile applications for the people doing the work — often offline, often on-site.",
-  },
-  {
-    layer: "Database",
-    approach:
-      "Data models that reflect the business, with integrity and reporting designed in from day one.",
-  },
-  {
-    layer: "Cloud",
-    approach:
-      "Cloud-ready deployments that scale with usage instead of requiring re-architecture.",
-  },
-  {
-    layer: "Infrastructure",
-    approach:
-      "Automated builds, environments, and monitoring so releases are routine, not risky.",
-  },
-];
-
-export const process = [
-  {
-    step: "01",
-    title: "Understand",
-    description: "Learn the business, the workflow, and where the real friction is.",
-  },
-  {
-    step: "02",
-    title: "Design",
-    description: "Define the product experience and the system architecture together.",
-  },
-  {
-    step: "03",
-    title: "Build",
-    description: "Develop the software, the data model, and the integrations.",
-  },
-  {
-    step: "04",
-    title: "Deploy",
-    description: "Launch into production with real users and real data.",
-  },
-  {
-    step: "05",
-    title: "Evolve",
-    description: "Improve the product as the business grows and workflows change.",
   },
 ];
 
