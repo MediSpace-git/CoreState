@@ -45,7 +45,7 @@ export default function Hero() {
     <section ref={ref} id="top" className="relative" aria-label="Introduction">
       <div
         data-hero-stage
-        className="flex h-dvh max-h-250 min-h-150 overflow-hidden pt-24"
+        className="flex h-dvh max-h-250 min-h-150 overflow-hidden pt-28"
       >
         <div className="container-x relative grid w-full flex-1 items-center gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-6">

@@ -115,15 +115,15 @@ export default function Navbar() {
 
   return (
     <header ref={ref} className="fixed inset-x-0 top-0 z-50">
-      <div className="container-x pt-3">
+      <div className="container-x pt-4">
         <div
           data-site-nav
-          className={`flex items-center justify-between gap-4 rounded-xs border px-3 transition-[background-color,border-color,height,box-shadow] duration-500 sm:px-4 ${
+          className={`flex items-center justify-between gap-6 rounded-xs border px-4 transition-[background-color,border-color,box-shadow,padding] duration-500 sm:px-6 ${
             open
-              ? "h-14 border-transparent bg-transparent"
+              ? "border-transparent bg-transparent py-2.5"
               : scrolled
-                ? "h-14 border-line bg-bg/80 shadow-[0_1px_0_var(--line)] backdrop-blur-md"
-                : "h-16 border-line/70 bg-bg/55 backdrop-blur-sm"
+                ? "border-line bg-bg/85 py-2.5 shadow-[0_12px_40px_rgba(18,20,24,0.06)] backdrop-blur-md"
+                : "border-line/70 bg-bg/60 py-3.5 backdrop-blur-sm"
           }`}
         >
           <a href="#top" aria-label="CoreState — back to top" className="shrink-0">
@@ -132,7 +132,7 @@ export default function Navbar() {
 
           <nav
             ref={linksRef}
-            className="relative hidden items-center gap-1 lg:flex"
+            className="relative hidden items-center gap-0.5 lg:flex"
             aria-label="Primary"
           >
             <span
@@ -146,7 +146,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 data-nav-link={item.href}
-                className={`relative px-2.5 py-2 text-[12px] tracking-[0.04em] transition-colors duration-300 ${
+                className={`relative px-3.5 py-2.5 text-[13px] tracking-[0.06em] transition-colors duration-300 ${
                   active === item.href ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
@@ -155,12 +155,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
             <ThemeToggle />
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex size-9 items-center justify-center rounded-xs border border-line-strong text-fg lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-xs border border-line-strong text-fg lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -178,7 +178,7 @@ export default function Navbar() {
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="container-x flex h-full flex-col justify-center pt-20">
+        <div className="container-x flex h-full flex-col justify-center pt-24">
           <nav className="flex flex-col" aria-label="Mobile">
             {nav.map((item, i) => (
               <a

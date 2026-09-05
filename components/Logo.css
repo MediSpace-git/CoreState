@@ -1,13 +1,14 @@
 .cs-logo {
   display: inline-flex;
   align-items: center;
+  line-height: 0;
 }
 
 .cs-logo-img {
   display: none;
-  height: 2rem;
+  height: 2.6rem;
   width: auto;
-  max-width: 11.5rem;
+  max-width: 13.5rem;
   object-fit: contain;
   object-position: left center;
 }
@@ -36,7 +37,14 @@ html.dark .cs-logo-img--dark {
 
 @media (min-width: 640px) {
   .cs-logo-img {
-    height: 2.25rem;
-    max-width: 13rem;
+    height: 3rem;
+    max-width: 16.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cs-logo-img {
+    height: 3.35rem;
+    max-width: 18.5rem;
   }
 }

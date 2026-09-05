@@ -11,15 +11,15 @@ export default function Logo({ className = "" }: { className?: string }) {
         src="/brand/corestateLogoLight.png"
         alt=""
         className="cs-logo-img cs-logo-img--light"
-        width={737}
-        height={338}
+        width={650}
+        height={179}
       />
       <img
         src="/brand/corestateLogoDark.png"
         alt=""
         className="cs-logo-img cs-logo-img--dark"
-        width={707}
-        height={353}
+        width={582}
+        height={160}
       />
     </span>
   );
