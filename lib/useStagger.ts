@@ -17,12 +17,15 @@ export function useStagger(scope: RefObject<HTMLElement | null>) {
         const items = gsap.utils.toArray<HTMLElement>("[data-stagger]");
         if (!items.length) return;
 
+        const compact = !window.matchMedia("(min-width: 1024px)").matches;
+        const shift = compact ? 18 : 32;
+        const rise = compact ? 20 : 36;
         items.forEach((el) => {
           const dir = el.dataset.dir;
-          if (dir === "left") gsap.set(el, { opacity: 0, x: -32, y: 0 });
-          else if (dir === "right") gsap.set(el, { opacity: 0, x: 32, y: 0 });
+          if (dir === "left") gsap.set(el, { opacity: 0, x: -shift, y: 0 });
+          else if (dir === "right") gsap.set(el, { opacity: 0, x: shift, y: 0 });
           else if (dir === "clip") gsap.set(el, { opacity: 1, clipPath: "inset(0 0 100% 0)" });
-          else gsap.set(el, { opacity: 0, y: 36 });
+          else gsap.set(el, { opacity: 0, y: rise });
         });
 
         ScrollTrigger.batch(items, {

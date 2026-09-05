@@ -129,8 +129,8 @@ export default function Industries() {
           lead="Our experience is concentrated in operationally demanding environments — places where software has to reflect how physical work actually gets done."
         />
 
-        <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <div ref={listRef} className="pr-8 sm:pr-12 lg:col-span-6 lg:pr-16" data-reveal>
+        <div className="mt-10 grid gap-8 lg:mt-20 lg:grid-cols-12 lg:gap-10">
+          <div ref={listRef} className="lg:col-span-6 lg:pr-16" data-reveal>
             <div role="list" aria-label="Industries">
               {industries.map((industry, i) => {
                 const selected = active === i;
@@ -150,7 +150,7 @@ export default function Industries() {
                       onFocus={() => setActive(i)}
                       onClick={() => setActive(i)}
                       onKeyDown={(event) => onKeyDown(event, i)}
-                      className={`flex w-full items-center gap-3 py-6 text-left text-xl font-medium tracking-tight transition-colors duration-300 sm:gap-4 sm:text-2xl ${
+                      className={`flex w-full items-center gap-3 py-4 text-left text-lg font-medium tracking-tight transition-colors duration-300 sm:gap-4 sm:py-6 sm:text-2xl ${
                         selected ? "text-fg" : "text-muted hover:text-fg"
                       }`}
                     >
@@ -164,7 +164,7 @@ export default function Industries() {
                       {industry.name}
                     </button>
 
-                    <div hidden={!selected} className="pb-6 lg:hidden">
+                    <div hidden={!selected} className="pb-4 lg:hidden">
                       {selected ? <Brief industry={industry} heading={false} /> : null}
                     </div>
                   </div>

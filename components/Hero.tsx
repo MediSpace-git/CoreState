@@ -45,9 +45,9 @@ export default function Hero() {
     <section ref={ref} id="top" className="relative" aria-label="Introduction">
       <div
         data-hero-stage
-        className="flex h-dvh max-h-250 min-h-150 overflow-hidden pt-28"
+        className="flex h-svh max-h-250 min-h-0 flex-col overflow-hidden pt-24 lg:min-h-150 lg:justify-center lg:pt-28"
       >
-        <div className="container-x relative grid w-full flex-1 items-center gap-10 lg:grid-cols-12 lg:gap-10">
+        <div className="container-x relative grid min-h-0 w-full flex-1 grid-cols-1 items-center gap-5 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-6">
             <h1 className="text-hero font-semibold leading-[1.04] tracking-tight text-fg">
               {HEADLINE_LINES.map((line) => (
@@ -60,7 +60,7 @@ export default function Hero() {
             </h1>
 
             <p
-              className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+              className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-6 sm:text-lg"
               data-hero-copy
               style={{ opacity: 0 }}
             >
@@ -69,7 +69,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="hidden lg:col-span-6 lg:block">
+          <div className="min-h-0 lg:col-span-6">
             <HeroVisual />
           </div>
         </div>

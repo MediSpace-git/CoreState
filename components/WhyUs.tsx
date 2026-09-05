@@ -29,7 +29,7 @@ export default function WhyUs() {
 
   return (
     <section ref={ref} id="why-us" className="scroll-mt-20 bg-surface" aria-label="Why work with us">
-      <div className="container-x grid gap-14 section-y lg:grid-cols-12 lg:gap-10">
+      <div className="container-x grid gap-8 section-y lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28 lg:pr-16">
             <SectionHeader
@@ -52,7 +52,7 @@ export default function WhyUs() {
             return (
               <div
                 key={item.title}
-                className="border-t border-line py-10 last:border-b"
+                className="border-t border-line py-6 last:border-b lg:py-10"
                 data-stagger
                 data-dir="right"
               >

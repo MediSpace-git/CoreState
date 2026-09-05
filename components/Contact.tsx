@@ -98,7 +98,7 @@ export default function Contact() {
       aria-label="Contact"
     >
       <div className="container-x section-y">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5 lg:pr-8">
             <p className="section-label" data-reveal>
               Contact

@@ -23,8 +23,8 @@ export default function CompanyIntro() {
       className="scroll-mt-20 bg-surface"
       aria-label="Company"
     >
-      <div className="container-x grid gap-14 section-y lg:grid-cols-12 lg:gap-10">
-        <div className="pr-8 sm:pr-12 lg:col-span-5 lg:pr-16">
+      <div className="container-x grid gap-8 section-y lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5 lg:pr-16">
           <SectionHeader
             label="Company"
             title="Software built around real business problems."
@@ -44,7 +44,7 @@ export default function CompanyIntro() {
             bring its people, data, and operations into one coherent whole.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-8 lg:mt-12">
             {SHIFTS.map((shift) => (
               <p
                 key={shift.from}

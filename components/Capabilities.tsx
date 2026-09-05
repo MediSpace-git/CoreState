@@ -38,7 +38,7 @@ export default function Capabilities() {
           lead="We take on the full lifecycle of a software product — research, design, engineering, deployment, and the years of evolution that follow."
         />
 
-        <div className="mt-16 grid gap-x-20 gap-y-12 sm:grid-cols-2">
+        <div className="mt-10 grid gap-x-20 gap-y-8 sm:grid-cols-2 lg:mt-16 lg:gap-y-12">
           {capabilities.map((cap, i) => {
             const Icon = ICONS[cap.icon];
             return (

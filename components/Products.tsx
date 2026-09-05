@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { products, type Product } from "@/lib/data";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { useReveal } from "@/lib/useReveal";
 
 /* ---------------------------------------------------------------- */
@@ -101,32 +101,32 @@ function SlideText({ product }: { product: Product }) {
 
   return (
     <>
-      <p
-        className="section-label"
-        data-el
-      >
+      <p className="section-label" data-el>
         {product.category}
       </p>
 
       <h3
-        className="mt-4 text-[clamp(2.5rem,1.6rem+2.4vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-fg"
+        className="mt-2 font-semibold leading-[1.02] tracking-tight text-fg text-[clamp(1.75rem,7vw,2.35rem)] lg:mt-4 lg:text-[clamp(2.5rem,1.6rem+2.4vw,4.5rem)]"
         data-el
       >
         {product.name}
       </h3>
 
-      <p className="mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg" data-el>
+      <p
+        className="mt-3 max-w-md text-sm leading-relaxed text-muted lg:mt-6 lg:text-lg"
+        data-el
+      >
         {product.description}
       </p>
 
-      <p className="mt-8 text-sm leading-relaxed text-muted" data-el>
+      <p className="mt-4 text-xs leading-relaxed text-muted lg:mt-8 lg:text-sm" data-el>
         {product.facets.join(" · ")}
       </p>
 
       <a
         href={product.url ?? "#contact"}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="mt-10 inline-block text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 transition-colors duration-300 hover:decoration-fg"
+        className="mt-5 inline-block text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 transition-colors duration-300 hover:decoration-fg lg:mt-10"
         data-el
       >
         Explore {product.name}
@@ -147,9 +147,8 @@ export default function Products() {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-        () => {
+      mm.add(MOTION_OK, () => {
+          const desktop = window.matchMedia("(min-width: 1024px)").matches;
           const slides = gsap.utils.toArray<HTMLElement>("[data-slide]");
           if (!slides.length) return;
 
@@ -172,13 +171,13 @@ export default function Products() {
             )
             .fromTo(
               first.querySelectorAll("[data-el]"),
-              { opacity: 0, y: 36 },
+              { opacity: 0, y: desktop ? 36 : 20 },
               { opacity: 1, y: 0, duration: 0.8, stagger: 0.09 },
               0.1
             )
             .fromTo(
               first.querySelector("[data-visual]"),
-              { opacity: 0, y: 48, scale: 0.97 },
+              { opacity: 0, y: desktop ? 48 : 28, scale: 0.97 },
               { opacity: 1, y: 0, scale: 1, duration: 0.9 },
               0.3
             );
@@ -193,10 +192,11 @@ export default function Products() {
             scrollTrigger: {
               trigger: "[data-stage]",
               start: "top top",
-              end: `+=${(slides.length - 1) * 1100}`,
+              end: `+=${(slides.length - 1) * (desktop ? 1100 : 720)}`,
               pin: true,
               scrub: 0.6,
               anticipatePin: 1,
+              invalidateOnRefresh: true,
             },
           });
 
@@ -260,24 +260,21 @@ export default function Products() {
       className="scroll-mt-20 bg-surface"
       aria-label="Products"
     >
-      {/* ------------------------------------------------------------ */}
-      {/* Pinned product stage — desktop, motion allowed                */}
-      {/* ------------------------------------------------------------ */}
-      <div data-prod-pinned className="hidden lg:block">
+      <div data-prod-pinned>
         <div
           data-stage
-          className="relative flex h-screen flex-col justify-center overflow-hidden bg-surface"
+          className="relative flex h-svh flex-col justify-center overflow-hidden bg-surface pt-16 lg:pt-0"
         >
           <div className="container-x relative w-full">
             <div
               data-stage-head
-              className="mb-14 flex items-end justify-between gap-8"
+              className="mb-6 flex items-end justify-between gap-8 lg:mb-14"
             >
               <p className="section-label">
                 Products
               </p>
               {count > 1 ? (
-                <div className="h-px w-32 bg-line">
+                <div className="h-px w-24 bg-line lg:w-32">
                   <div
                     data-prod-progress
                     className="h-full origin-left bg-fg"
@@ -287,7 +284,6 @@ export default function Products() {
               ) : null}
             </div>
 
-            {/* Slides — all products share this exact space */}
             <div className="relative">
               {products.map((product, i) => (
                 <div
@@ -295,15 +291,15 @@ export default function Products() {
                   data-slide
                   className={
                     i === 0
-                      ? "relative grid grid-cols-12 items-center gap-10"
-                      : "absolute inset-0 grid grid-cols-12 items-center gap-10"
+                      ? "relative grid grid-cols-1 items-center gap-5 lg:grid-cols-12 lg:gap-10"
+                      : "absolute inset-0 grid grid-cols-1 items-center gap-5 lg:grid-cols-12 lg:gap-10"
                   }
                 >
-                  <div className="col-span-5">
+                  <div className="order-2 lg:order-1 lg:col-span-5">
                     <SlideText product={product} />
                   </div>
-                  <div className="col-span-7" data-visual>
-                    <div className="h-[52vh] max-h-140">
+                  <div className="order-1 lg:order-2 lg:col-span-7" data-visual>
+                    <div className="h-[22vh] max-h-44 lg:h-[52vh] lg:max-h-140">
                       <ProductVisual product={product} />
                     </div>
                   </div>
@@ -314,22 +310,16 @@ export default function Products() {
         </div>
       </div>
 
-      {/* ------------------------------------------------------------ */}
-      {/* Static fallback — small screens or reduced motion             */}
-      {/* ------------------------------------------------------------ */}
-      <div data-prod-static className="lg:hidden">
+      <div data-prod-static className="hidden">
         <div className="container-x section-y">
-          <p
-            className="section-label"
-            data-reveal
-          >
+          <p className="section-label" data-reveal>
             Products
           </p>
 
-          <div className="mt-14 space-y-20">
+          <div className="mt-10 space-y-14 lg:mt-14 lg:space-y-20">
             {products.map((product) => (
               <div key={product.name} data-reveal>
-                <div className="mb-8 h-64 sm:h-80">
+                <div className="mb-6 h-52 lg:mb-8 lg:h-80">
                   <ProductVisual product={product} />
                 </div>
                 <SlideText product={product} />

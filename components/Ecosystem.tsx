@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import {
-  ArrowDown,
   ClipboardList,
   Contact,
   FileDown,
@@ -14,7 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { ecosystemPhases } from "@/lib/data";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, MOTION_OK, REDUCED } from "@/lib/gsap";
 
 /* ---------------------------------------------------------------- */
 /* Diagram geometry (viewBox 720 × 560)                              */
@@ -86,9 +85,8 @@ export default function Ecosystem() {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-        () => {
+      mm.add(MOTION_OK, () => {
+          const desktop = window.matchMedia("(min-width: 1024px)").matches;
           const boxes = gsap.utils.toArray<SVGGElement>("[data-box]");
           const texts = gsap.utils.toArray<HTMLElement>("[data-phase-text]");
           const dots = gsap.utils.toArray<HTMLElement>("[data-phase-dot]");
@@ -108,7 +106,7 @@ export default function Ecosystem() {
           gsap.set(dots.slice(1), { opacity: 0.35 });
           gsap.set("[data-hub]", { autoAlpha: 0, scale: 0.82, transformOrigin: "50% 50%" });
           gsap.set("[data-app]", { autoAlpha: 0, scale: 0.94, transformOrigin: "50% 50%" });
-          gsap.set("[data-metrics]", { autoAlpha: 0, x: 36 });
+          gsap.set("[data-metrics]", { autoAlpha: 0, x: desktop ? 36 : 20 });
           gsap.set(spokes, { drawSVG: "0%" });
           gsap.set(bars, { scaleY: 0, transformOrigin: "50% 100%" });
 
@@ -117,10 +115,11 @@ export default function Ecosystem() {
             scrollTrigger: {
               trigger: "[data-pin]",
               start: "top top",
-              end: "+=2800",
+              end: desktop ? "+=2800" : "+=2000",
               pin: true,
               scrub: 0.6,
               anticipatePin: 1,
+              invalidateOnRefresh: true,
             },
           });
 
@@ -164,7 +163,7 @@ export default function Ecosystem() {
 
           /* -> Phase 4: live operational visibility */
           swapText(2, 3);
-          tl.to("[data-app]", { x: -76, duration: 0.6 }, "<");
+          tl.to("[data-app]", { x: desktop ? -76 : -28, duration: 0.6 }, "<");
           tl.to("[data-metrics]", { autoAlpha: 1, x: 0, duration: 0.6 }, "<0.2");
           tl.to(bars, { scaleY: 1, duration: 0.5, stagger: 0.07 }, "<0.25");
           tl.fromTo(
@@ -184,6 +183,10 @@ export default function Ecosystem() {
           );
         }
       );
+
+      mm.add(REDUCED, () => {
+        gsap.set("[data-eco-phase]", { opacity: 1, y: 0 });
+      });
     },
     { scope: ref }
   );
@@ -193,31 +196,31 @@ export default function Ecosystem() {
       {/* ------------------------------------------------------------ */}
       {/* Pinned scroll experience — desktop, motion allowed            */}
       {/* ------------------------------------------------------------ */}
-      <div data-eco-pinned className="hidden lg:block">
-        <div data-pin className="flex h-screen items-center overflow-hidden bg-surface">
-          <div className="container-x grid w-full grid-cols-12 items-center gap-8">
+      <div data-eco-pinned>
+        <div data-pin className="flex h-svh items-center overflow-hidden bg-surface pt-16 lg:pt-0">
+          <div className="container-x grid h-full w-full grid-cols-1 items-center gap-4 lg:grid-cols-12 lg:gap-8">
             {/* Left: narrative */}
-            <div className="col-span-4">
+            <div className="lg:col-span-4">
               <p className="section-label mb-0">
                 The shift
               </p>
-              <h2 className="text-h2 mt-6 font-semibold leading-[1.1] tracking-tight text-fg">
+              <h2 className="text-h2 mt-3 font-semibold leading-[1.1] tracking-tight text-fg lg:mt-6">
                 One system, end to end.
               </h2>
 
-              <div className="mt-10 flex gap-6">
+              <div className="mt-5 flex gap-4 lg:mt-10 lg:gap-6">
                 <div className="relative w-px self-stretch bg-line" aria-hidden="true">
                   <span
                     data-progress
                     className="absolute inset-0 origin-top bg-fg/50"
                   />
                 </div>
-                <ol className="space-y-4">
+                <ol className="flex flex-wrap gap-x-4 gap-y-2 lg:block lg:space-y-4">
                   {ecosystemPhases.map((phase) => (
                     <li
                       key={phase.id}
                       data-phase-dot
-                      className="text-sm text-fg"
+                      className="text-xs text-fg lg:text-sm"
                     >
                       {phase.label}
                     </li>
@@ -226,17 +229,17 @@ export default function Ecosystem() {
               </div>
 
               {/* Stacked phase descriptions */}
-              <div className="relative mt-12 h-44">
+              <div className="relative mt-5 h-28 lg:mt-12 lg:h-44">
                 {ecosystemPhases.map((phase) => (
                   <div
                     key={phase.id}
                     data-phase-text
                     className="absolute inset-0"
                   >
-                    <h3 className="text-xl font-semibold tracking-tight text-fg">
+                    <h3 className="text-base font-semibold tracking-tight text-fg lg:text-xl">
                       {phase.title}
                     </h3>
-                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
+                    <p className="mt-2 max-w-xs text-xs leading-relaxed text-muted lg:mt-3 lg:text-sm">
                       {phase.description}
                     </p>
                   </div>
@@ -245,10 +248,10 @@ export default function Ecosystem() {
             </div>
 
             {/* Right: evolving diagram */}
-            <div className="col-span-8">
+            <div className="min-h-0 lg:col-span-8">
               <svg
                 viewBox="0 0 720 560"
-                className="w-full"
+                className="h-auto max-h-[38svh] w-full lg:max-h-none"
                 aria-hidden="true"
                 fontFamily="var(--font-mono-face), monospace"
               >
@@ -435,35 +438,29 @@ export default function Ecosystem() {
       {/* ------------------------------------------------------------ */}
       {/* Static fallback — small screens or reduced motion             */}
       {/* ------------------------------------------------------------ */}
-      <div data-eco-static className="lg:hidden">
+      <div data-eco-static className="hidden">
         <div className="container-x section-y">
           <p className="section-label">
             The shift
           </p>
-          <h2 className="text-h2 mt-6 font-semibold tracking-tight text-fg">
+          <h2 className="text-h2 mt-4 font-semibold tracking-tight text-fg">
             One system, end to end.
           </h2>
 
-          <ol className="mt-12">
-            {ecosystemPhases.map((phase, i) => (
-              <li key={phase.id} className="relative">
-                <div className="border-t border-line py-7">
+          <ol className="mt-8 border-l border-line pl-5">
+            {ecosystemPhases.map((phase) => (
+              <li key={phase.id} data-eco-phase className="relative pb-7 last:pb-0">
+                <div>
                   <p className="section-label">
                     {phase.label}
                   </p>
-                  <h3 className="mt-3 text-xl font-semibold tracking-tight text-fg">
+                  <h3 className="mt-2 text-lg font-semibold tracking-tight text-fg">
                     {phase.title}
                   </h3>
-                  <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
+                  <p className="mt-1.5 max-w-md text-sm leading-relaxed text-muted">
                     {phase.description}
                   </p>
                 </div>
-                {i < ecosystemPhases.length - 1 ? (
-                  <ArrowDown
-                    className="mx-auto mb-2 size-4 text-faint"
-                    aria-hidden="true"
-                  />
-                ) : null}
               </li>
             ))}
           </ol>

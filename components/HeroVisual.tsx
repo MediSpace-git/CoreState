@@ -227,9 +227,8 @@ export default function HeroVisual() {
         );
       });
 
-      mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-        () => {
+      mm.add(MOTION_OK, () => {
+          const desktop = window.matchMedia("(min-width: 1024px)").matches;
           const stage = document.querySelector<HTMLElement>("[data-hero-stage]");
           if (!stage) return;
 
@@ -240,10 +239,11 @@ export default function HeroVisual() {
             scrollTrigger: {
               trigger: stage,
               start: "top top",
-              end: `+=${LAST * 420}`,
+              end: `+=${LAST * (desktop ? 420 : 320)}`,
               pin: true,
               scrub: 0.55,
               anticipatePin: 1,
+              invalidateOnRefresh: true,
               snap: {
                 snapTo: (value) => Math.round(value * LAST) / LAST,
                 duration: 0.28,
@@ -299,7 +299,7 @@ export default function HeroVisual() {
   return (
     <div
       ref={ref}
-      className="relative mx-auto aspect-square w-full max-w-[min(100%,42rem)] select-none"
+      className="relative mx-auto aspect-square w-full max-w-[min(100%,18rem)] select-none lg:max-w-[min(100%,42rem)]"
       role="img"
       aria-label="Diagram of a layered software platform. Cards rise into the stack as you scroll: interfaces, applications, APIs and services, data, and operations."
     >
@@ -320,7 +320,7 @@ export default function HeroVisual() {
         aria-hidden="true"
       >
         <div
-          className="stack relative size-[clamp(13.5rem,22vw,30rem)]"
+          className="stack relative size-[clamp(10.5rem,46vw,18rem)] lg:size-[clamp(13.5rem,22vw,30rem)]"
           style={{ transformStyle: "preserve-3d" }}
         >
           {LAYERS.map((layer, i) => (
@@ -350,12 +350,12 @@ export default function HeroVisual() {
             type="button"
             data-legend
             data-index={i}
-            className={`group absolute right-0 flex w-44 cursor-pointer items-center gap-2.5 text-left opacity-0${i === 0 ? " is-active is-in" : ""}`}
+            className={`group absolute right-0 flex w-[6.75rem] cursor-pointer items-center gap-1.5 text-left opacity-0 sm:w-44 sm:gap-2.5${i === 0 ? " is-active is-in" : ""}`}
             style={{ top: layer.top }}
           >
             <span
               data-legend-line
-              className="h-px w-8 shrink-0 bg-line-strong transition-colors duration-300 group-[.is-active]:bg-accent"
+              className="h-px w-4 shrink-0 bg-line-strong transition-colors duration-300 group-[.is-active]:bg-accent sm:w-8"
             />
             <span
               data-legend-dot

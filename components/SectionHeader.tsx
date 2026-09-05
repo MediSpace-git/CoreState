@@ -15,7 +15,7 @@ export default function SectionHeader({
 }: Props) {
   return (
     <div className={`max-w-3xl ${className}`}>
-      <p className="section-label mb-6" data-reveal>
+      <p className="section-label mb-4 sm:mb-6" data-reveal>
         {label}
       </p>
       <WordReveal
@@ -25,7 +25,7 @@ export default function SectionHeader({
       />
       {lead ? (
         <p
-          className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
+          className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg"
           data-reveal
           data-delay="0.16"
         >

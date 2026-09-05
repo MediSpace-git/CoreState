@@ -20,12 +20,12 @@ html.light {
   --diagram-strong: rgba(18, 20, 24, 0.32);
   --diagram-fill: rgba(18, 20, 24, 0.12);
   --invert: #ffffff;
-  --page-gutter: clamp(1.5rem, 6vw, 12rem);
+  --page-gutter: clamp(1.25rem, 5.5vw, 12rem);
   --page-max: 140rem;
-  --section-y: clamp(6rem, 4.5rem + 8vw, 13rem);
-  --text-hero: clamp(2.4rem, 1.15rem + 3.4vw, 5.5rem);
-  --text-display: clamp(2.35rem, 1.2rem + 2.6vw, 4.85rem);
-  --text-h2: clamp(1.85rem, 1.05rem + 1.7vw, 3.5rem);
+  --section-y: clamp(3.5rem, 2.4rem + 7vw, 13rem);
+  --text-hero: clamp(2.05rem, 1.05rem + 3.2vw, 5.5rem);
+  --text-display: clamp(2.05rem, 1.1rem + 2.4vw, 4.85rem);
+  --text-h2: clamp(1.65rem, 0.95rem + 1.6vw, 3.5rem);
 }
 
 html.dark {
@@ -185,6 +185,21 @@ h3 {
   color: var(--muted);
 }
 
+.cs-h-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--page-gutter);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.cs-h-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .hairline-t {
   border-top: 1px solid var(--line-strong);
 }
@@ -205,7 +220,8 @@ h3 {
 .js [data-reveal],
 .js [data-stagger],
 .js [data-field],
-.js [data-proc-step] {
+.js [data-proc-step],
+.js [data-eco-phase] {
   opacity: 0;
 }
 
@@ -218,7 +234,8 @@ h3 {
   .js [data-reveal],
   .js [data-stagger],
   .js [data-field],
-  .js [data-proc-step] {
+  .js [data-proc-step],
+  .js [data-eco-phase] {
     opacity: 1;
   }
 

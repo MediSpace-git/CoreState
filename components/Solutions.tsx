@@ -47,7 +47,7 @@ export default function Solutions() {
           lead="The problems we solve most often. Each one starts with how the work actually happens — then the software follows."
         />
 
-        <div className="mt-16 grid sm:grid-cols-2">
+        <div className="mt-10 grid sm:grid-cols-2 lg:mt-16">
           {solutions.map((solution) => {
             const Icon = SOLUTION_ICONS[solution.name];
             return (

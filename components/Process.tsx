@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import { process } from "@/lib/data";
-import { gsap, useGSAP, MOTION_OK, REDUCED, EASE } from "@/lib/gsap";
+import { gsap, useGSAP, REDUCED, EASE } from "@/lib/gsap";
 import { useReveal } from "@/lib/useReveal";
 
 const PROCESS_ICONS: Record<string, LucideIcon> = {
@@ -30,35 +30,68 @@ export default function Process() {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add(MOTION_OK, () => {
-        const steps = gsap.utils.toArray<HTMLElement>("[data-proc-step]");
-        gsap.set(steps, { opacity: 0, x: -28 });
-        gsap.set("[data-proc-rail]", { scaleX: 0 });
+      mm.add(
+        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const steps = gsap.utils.toArray<HTMLElement>("[data-proc-step]");
+          gsap.set(steps, { opacity: 0, x: -28 });
+          gsap.set("[data-proc-rail]", { scaleX: 0 });
 
-        const tl = gsap.timeline({
-          defaults: { ease: EASE },
-          scrollTrigger: {
-            trigger: "[data-proc-track]",
-            start: "top 82%",
-            once: true,
-          },
-        });
+          const tl = gsap.timeline({
+            defaults: { ease: EASE },
+            scrollTrigger: {
+              trigger: "[data-proc-track]",
+              start: "top 82%",
+              once: true,
+            },
+          });
 
-        tl.to("[data-proc-rail]", {
-          scaleX: 1,
-          duration: 1.15,
-          ease: "power2.inOut",
-        });
-        tl.to(
-          steps,
-          { opacity: 1, x: 0, duration: 0.75, stagger: 0.09 },
-          0.15
-        );
-      });
+          tl.to("[data-proc-rail]", {
+            scaleX: 1,
+            duration: 1.15,
+            ease: "power2.inOut",
+          });
+          tl.to(
+            steps,
+            { opacity: 1, x: 0, duration: 0.75, stagger: 0.09 },
+            0.15
+          );
+        }
+      );
+
+      mm.add(
+        "(max-width: 1023px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const steps = gsap.utils.toArray<HTMLElement>("[data-proc-step]");
+          gsap.set(steps, { opacity: 0, y: 16, x: 0 });
+          gsap.set("[data-proc-rail-v]", { scaleY: 0 });
+
+          const tl = gsap.timeline({
+            defaults: { ease: EASE },
+            scrollTrigger: {
+              trigger: "[data-proc-track]",
+              start: "top 86%",
+              once: true,
+            },
+          });
+
+          tl.to("[data-proc-rail-v]", {
+            scaleY: 1,
+            duration: 1.05,
+            ease: "power2.inOut",
+          });
+          tl.to(
+            steps,
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
+            0.12
+          );
+        }
+      );
 
       mm.add(REDUCED, () => {
-        gsap.set("[data-proc-step]", { opacity: 1, x: 0 });
+        gsap.set("[data-proc-step]", { opacity: 1, x: 0, y: 0 });
         gsap.set("[data-proc-rail]", { scaleX: 1 });
+        gsap.set("[data-proc-rail-v]", { scaleY: 1 });
       });
     },
     { scope: ref }
@@ -73,7 +106,7 @@ export default function Process() {
           lead="No mystery phases. Five steps, each with a clear output, repeated as the product evolves."
         />
 
-        <div data-proc-track className="relative mt-16 sm:mt-20">
+        <div data-proc-track className="relative mt-10 sm:mt-16 lg:mt-20">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute top-5 right-[10%] left-[10%] hidden h-px bg-line lg:block"
@@ -84,6 +117,17 @@ export default function Process() {
             />
           </div>
 
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-0 bottom-0 left-1 w-px lg:hidden"
+          >
+            <div
+              data-proc-rail-v
+              className="h-full origin-top bg-fg/50"
+              style={{ transform: "scaleY(0)" }}
+            />
+          </div>
+
           <ol className="relative ml-1 border-l border-line pl-10 lg:ml-0 lg:grid lg:grid-cols-5 lg:border-l-0 lg:pl-0">
             {process.map((item) => {
               const Icon = PROCESS_ICONS[item.title];
@@ -91,7 +135,7 @@ export default function Process() {
                 <li
                   key={item.title}
                   data-proc-step
-                  className="relative pb-12 last:pb-0 lg:px-5 lg:pb-0 lg:text-center"
+                  className="relative pb-8 last:pb-0 lg:px-5 lg:pb-0 lg:text-center"
                 >
                   <span className="absolute -left-14 top-0 z-10 flex size-8 items-center justify-center rounded-xs border border-line bg-bg text-current lg:static lg:mx-auto lg:mb-7 lg:size-10">
                     {Icon ? (
