@@ -27,7 +27,12 @@ export function HeroBackground() {
       <Prism
         {...heroPrismProps}
         {...(phone
-          ? { scale: 2.7, offset: { x: 0, y: 18 }, quality: "low" as const }
+          ? {
+              scale: 2.7,
+              offset: { x: 0, y: 18 },
+              quality: "low" as const,
+              timeScale: 0,
+            }
           : {})}
       />
       <div className="hero-text-frost" aria-hidden="true">

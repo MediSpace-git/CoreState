@@ -165,6 +165,13 @@ html:has(.prism-site) {
     inset: -1.25rem -1rem -1rem -0.75rem;
     background: none;
   }
+
+  .prism-site #hero .hero-eyebrow,
+  .prism-site #hero .hero-headline,
+  .prism-site #hero .hero-copy,
+  .prism-site #hero .hero-cta {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {

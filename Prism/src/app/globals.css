@@ -165,6 +165,13 @@ body {
   .hero-text-frost__wash {
     display: none;
   }
+
+  #hero .hero-eyebrow,
+  #hero .hero-headline,
+  #hero .hero-copy,
+  #hero .hero-cta {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {
