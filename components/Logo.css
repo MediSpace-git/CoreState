@@ -1,0 +1,42 @@
+.cs-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cs-logo-img {
+  display: none;
+  height: 2rem;
+  width: auto;
+  max-width: 11.5rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.cs-logo-img--light {
+  display: block;
+}
+
+html.dark .cs-logo-img--light {
+  display: none;
+}
+
+html.dark .cs-logo-img--dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .cs-logo-img--light {
+    display: none;
+  }
+
+  html:not(.light) .cs-logo-img--dark {
+    display: block;
+  }
+}
+
+@media (min-width: 640px) {
+  .cs-logo-img {
+    height: 2.25rem;
+    max-width: 13rem;
+  }
+}
