@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { SiteShell } from "@prism/components/layout/SiteShell";
+import { PageBreadcrumbs } from "@prism/components/layout/PageBreadcrumbs";
 import { routes } from "@prism/config/content";
+import type { Crumb } from "@/lib/json-ld";
 
 type Feature = {
   title: string;
@@ -18,13 +20,15 @@ type Props = {
   features: readonly Feature[];
   workflow: readonly string[];
   note?: string;
+  crumbs: Crumb[];
 };
 
-export function FeaturePage({ hero, features, workflow, note }: Props) {
+export function FeaturePage({ hero, features, workflow, note, crumbs }: Props) {
   return (
     <SiteShell>
       <section className="bg-[var(--ink)] px-5 pt-28 pb-16 md:px-8 md:pt-32">
         <div className="mx-auto max-w-[800px]">
+          <PageBreadcrumbs items={crumbs} />
           <p className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] text-[var(--signal)] uppercase">
             {hero.eyebrow}
           </p>

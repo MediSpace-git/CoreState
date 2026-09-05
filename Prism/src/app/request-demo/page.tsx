@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
-import { demoPage } from "@prism/config/content";
 import { DemoPage } from "@prism/features/demo/DemoPage";
+import { pageMetadata, prismSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: demoPage.title,
-  description: demoPage.description,
-};
+export const metadata = pageMetadata(prismSeo.requestDemo);
 
 export default function Page() {
   return <DemoPage />;

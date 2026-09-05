@@ -15,6 +15,12 @@ export function SiteFooter() {
           <p className="mt-4 text-sm text-[var(--paper-muted)]">{companyContact.address}</p>
         </div>
         <nav className="flex flex-col gap-2 text-sm" aria-label="Footer">
+          <Link
+            href="/"
+            className="text-[var(--paper-muted)] transition-colors hover:text-[var(--paper)]"
+          >
+            CoreState
+          </Link>
           {footerNav.map((link) => (
             <Link
               key={link.href}

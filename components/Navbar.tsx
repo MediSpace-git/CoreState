@@ -7,6 +7,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { nav } from "@/lib/data";
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
 import {
+  hashFromHref,
+  isHomePath,
   isInPageHash,
   isNavLocked,
   lockNav,
@@ -94,17 +96,19 @@ export default function Navbar() {
       if (!link || link.target === "_blank") return;
       const href = link.getAttribute("href");
       if (!isInPageHash(href)) return;
+      if (!isHomePath()) return;
 
       event.preventDefault();
+      const hash = hashFromHref(href);
       const menuOpen = document.body.style.overflow === "hidden";
       setOpen(false);
-      const next = href === "#top" ? null : href;
-      lockNav(href);
+      const next = hash === "#top" ? null : hash;
+      lockNav(hash);
       setActive(next);
-      window.history.pushState(null, "", href);
+      window.history.pushState(null, "", hash);
       window.setTimeout(() => {
-        scrollToSection(href, () => {
-          setActive(href === "#top" ? null : readActiveSection() ?? next);
+        scrollToSection(hash, () => {
+          setActive(hash === "#top" ? null : readActiveSection() ?? next);
         });
       }, menuOpen ? 90 : 0);
     };
@@ -126,7 +130,7 @@ export default function Navbar() {
                 : "border-line/70 bg-bg/60 py-3.5 backdrop-blur-sm"
           }`}
         >
-          <a href="#top" aria-label="CoreState — back to top" className="shrink-0">
+          <a href="/#top" aria-label="CoreState home" className="shrink-0">
             <Logo />
           </a>
 
@@ -145,9 +149,9 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                data-nav-link={item.href}
+                data-nav-link={hashFromHref(item.href)}
                 className={`relative px-3.5 py-2.5 text-[13px] tracking-[0.06em] transition-colors duration-300 ${
-                  active === item.href ? "text-fg" : "text-muted hover:text-fg"
+                  active === hashFromHref(item.href) ? "text-fg" : "text-muted hover:text-fg"
                 }`}
               >
                 {item.label}
@@ -187,7 +191,7 @@ export default function Navbar() {
                 tabIndex={open ? 0 : -1}
                 style={{ transitionDelay: open ? `${80 + i * 55}ms` : "0ms" }}
                 className={`border-b border-line py-5 text-[1.65rem] font-medium tracking-tight transition-all duration-500 ${
-                  active === item.href ? "text-fg" : "text-muted"
+                  active === hashFromHref(item.href) ? "text-fg" : "text-muted"
                 } ${open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
               >
                 {item.label}

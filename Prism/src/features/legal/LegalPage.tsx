@@ -1,16 +1,20 @@
 import { SiteShell } from "@prism/components/layout/SiteShell";
+import { PageBreadcrumbs } from "@prism/components/layout/PageBreadcrumbs";
+import type { Crumb } from "@/lib/json-ld";
 
 type Props = {
   title: string;
   updated: string;
+  crumbs: Crumb[];
   children: React.ReactNode;
 };
 
-export function LegalPage({ title, updated, children }: Props) {
+export function LegalPage({ title, updated, crumbs, children }: Props) {
   return (
     <SiteShell>
       <article className="bg-[var(--ink)] px-5 pt-28 pb-24 md:px-8 md:pt-32">
         <div className="mx-auto max-w-[720px]">
+          <PageBreadcrumbs items={crumbs} />
           <h1 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3rem)] font-semibold text-[var(--paper)]">
             {title}
           </h1>

@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
 import { companyContact, siteConfig, termsPage } from "@prism/config/content";
 import { LegalPage } from "@prism/features/legal/LegalPage";
+import { prismCrumbs } from "@/lib/json-ld";
+import { pageMetadata, prismSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: termsPage.title,
-  description: `Terms for using the public Prism website operated by ${siteConfig.company}.`,
-};
+export const metadata = pageMetadata(prismSeo.terms);
 
 export default function Page() {
   return (
-    <LegalPage title={termsPage.title} updated={termsPage.updated}>
+    <LegalPage
+      title={termsPage.title}
+      updated={termsPage.updated}
+      crumbs={[...prismCrumbs.terms]}
+    >
       <p>
         The public website describes Prism, the field-operations product of {siteConfig.company}.
         Use of a tenant (mobile app or console) is governed by that customer’s agreement, not this

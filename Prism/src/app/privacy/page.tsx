@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
 import { companyContact, privacyPage, siteConfig } from "@prism/config/content";
 import { LegalPage } from "@prism/features/legal/LegalPage";
+import { prismCrumbs } from "@/lib/json-ld";
+import { pageMetadata, prismSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: privacyPage.title,
-  description: `How ${siteConfig.company} handles information collected on the Prism website.`,
-};
+export const metadata = pageMetadata(prismSeo.privacy);
 
 export default function Page() {
   return (
-    <LegalPage title={privacyPage.title} updated={privacyPage.updated}>
+    <LegalPage
+      title={privacyPage.title}
+      updated={privacyPage.updated}
+      crumbs={[...prismCrumbs.privacy]}
+    >
       <p>
         This page covers the public Prism website operated by {siteConfig.company}. It is not a
         substitute for the privacy terms shown inside a customer’s tenant app.

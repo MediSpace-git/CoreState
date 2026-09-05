@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { SiteShell } from "@prism/components/layout/SiteShell";
+import { PageBreadcrumbs } from "@prism/components/layout/PageBreadcrumbs";
 import { ProductStage } from "@prism/components/product/ProductMockups";
 import { productOverview, routes } from "@prism/config/content";
+import { prismCrumbs } from "@/lib/json-ld";
 
 export function ProductOverviewPage() {
   return (
     <SiteShell>
       <section className="bg-[var(--ink)] px-5 pt-28 pb-16 md:px-8 md:pt-32">
         <div className="mx-auto max-w-[800px]">
+          <PageBreadcrumbs items={[...prismCrumbs.product]} />
           <p className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] text-[var(--signal)] uppercase">
             {productOverview.hero.eyebrow}
           </p>

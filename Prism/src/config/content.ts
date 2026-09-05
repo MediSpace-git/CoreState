@@ -1,4 +1,5 @@
 import type { PrismProps } from "@prism/components/effects/prism";
+import { getCanonicalOrigin } from "@/lib/seo";
 
 export const siteConfig = {
   name: "Prism",
@@ -10,9 +11,7 @@ export const siteConfig = {
 } as const;
 
 export function getSiteUrl() {
-  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (fromEnv) return fromEnv;
-  return "http://localhost:3000";
+  return getCanonicalOrigin();
 }
 
 export const companyContact = {

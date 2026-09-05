@@ -18,12 +18,12 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Company", href: "#company" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Products", href: "#products" },
-  { label: "Industries", href: "#industries" },
-  { label: "Technology", href: "#technology" },
-  { label: "Contact", href: "#contact" },
+  { label: "Company", href: "/#company" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Products", href: "/#products" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export type Product = {
@@ -49,22 +49,6 @@ export const products: Product[] = [
     poster: "/products/prism-poster.jpg",
     url: "/prism",
     newTab: true,
-  },
-  {
-    name: "Ledger",
-    category: "Operations intelligence",
-    description:
-      "Live operational reporting for businesses that still reconstruct the week from spreadsheets, inboxes, and month-end exports.",
-    url: null,
-    facets: ["Live dashboards", "Operational KPIs", "Audit trails"],
-  },
-  {
-    name: "Relay",
-    category: "Workforce coordination",
-    description:
-      "Scheduling, dispatch, and job records for distributed teams whose work happens on-site rather than at a desk.",
-    url: null,
-    facets: ["Dispatch", "Mobile job records", "On-site reporting"],
   },
 ];
 

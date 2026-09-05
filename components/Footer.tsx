@@ -6,7 +6,9 @@ export default function Footer() {
     <footer className="bg-surface" aria-label="Footer">
       <div className="container-x grid gap-14 py-16 lg:grid-cols-12 lg:gap-10 lg:py-24">
         <div className="lg:col-span-5">
-          <Logo />
+          <a href="/" aria-label="CoreState home">
+            <Logo />
+          </a>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
             Software products and digital solutions that connect people,
             processes, data, and operations.
@@ -15,9 +17,9 @@ export default function Footer() {
 
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7">
           <div>
-            <h3 className="section-label">
+            <h2 className="section-label">
               Site
-            </h3>
+            </h2>
             <ul className="mt-5 space-y-3">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -33,14 +35,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="section-label">
+            <h2 className="section-label">
               Products
-            </h3>
+            </h2>
             <ul className="mt-5 space-y-3">
               {products.map((product) => (
                 <li key={product.name}>
                   <a
-                    href={product.url ?? "#products"}
+                    href={product.url ?? "/#products"}
                     {...(product.url &&
                     (product.newTab || /^https?:\/\//.test(product.url))
                       ? { target: "_blank", rel: "noopener noreferrer" }
@@ -55,13 +57,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="section-label">
+            <h2 className="section-label">
               Legal
-            </h3>
+            </h2>
             <ul className="mt-5 space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/privacy"
                   className="text-sm text-muted transition-colors duration-300 hover:text-fg"
                 >
                   Privacy
@@ -69,7 +71,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/terms"
                   className="text-sm text-muted transition-colors duration-300 hover:text-fg"
                 >
                   Terms

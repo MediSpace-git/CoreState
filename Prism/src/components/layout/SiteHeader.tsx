@@ -102,6 +102,13 @@ export function SiteHeader() {
           aria-label="Mobile"
         >
           <div className="flex flex-col gap-4">
+            <Link
+              href="/"
+              className="text-sm text-[var(--paper-muted)] transition-colors hover:text-[var(--paper)]"
+              onClick={() => setOpen(false)}
+            >
+              CoreState
+            </Link>
             {navLinks.map((link) => {
               const active = isActiveNavHref(pathname, link.href, NAV_HREFS);
               return (

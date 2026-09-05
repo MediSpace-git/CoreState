@@ -8,10 +8,13 @@ import { Surfaces } from "@prism/components/sections/surfaces/Surfaces";
 import { ProductPreview } from "@prism/components/sections/product-preview/ProductPreview";
 import { Trust } from "@prism/components/sections/trust/Trust";
 import { Workflow } from "@prism/components/sections/workflow/Workflow";
+import { JsonLd } from "@/components/JsonLd";
+import { prismSoftwareJsonLd } from "@/lib/json-ld";
 
 export function HomePage() {
   return (
     <SiteShell>
+      <JsonLd data={prismSoftwareJsonLd()} />
       <div id="home-sections">
         <Hero />
         <Trust />

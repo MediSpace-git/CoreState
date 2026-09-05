@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
-import { contactPage } from "@prism/config/content";
 import { ContactPage } from "@prism/features/contact/ContactPage";
+import { pageMetadata, prismSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: contactPage.title,
-  description: contactPage.description,
-};
+export const metadata = pageMetadata(prismSeo.contact);
 
 export default function Page() {
   return <ContactPage />;

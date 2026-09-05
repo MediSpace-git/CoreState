@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@prism/config/content";
+import { prismSeo } from "@/lib/seo";
 import "./prism.css";
 import "../../Prism/src/components/effects/prism/Prism.css";
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} · ${siteConfig.company}`,
-    template: `%s · ${siteConfig.name}`,
+    default: prismSeo.home.title,
+    template: "%s | CoreState",
   },
-  description: siteConfig.description,
+  description: prismSeo.home.description,
+  applicationName: `${siteConfig.name} · ${siteConfig.company}`,
   icons: {
-    icon: "/brand/prism-logo.png",
+    icon: [{ url: "/brand/prism-logo.png", type: "image/png" }],
     apple: "/brand/prism-logo.png",
   },
 };

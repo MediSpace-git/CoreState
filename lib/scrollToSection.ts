@@ -10,6 +10,11 @@ function offsetY() {
   return (bar?.getBoundingClientRect().bottom ?? 72) + NAV_GAP;
 }
 
+export function hashFromHref(href: string) {
+  const index = href.indexOf("#");
+  return index >= 0 ? href.slice(index) : "";
+}
+
 export function lockNav(hash: string | null) {
   lock = hash;
 }
@@ -24,9 +29,11 @@ export function readActiveSection(): string | null {
   let current: string | null = null;
 
   for (const item of nav) {
-    const el = document.querySelector<HTMLElement>(item.href);
+    const hash = hashFromHref(item.href);
+    if (!hash) continue;
+    const el = document.querySelector<HTMLElement>(hash);
     if (!el) continue;
-    if (el.getBoundingClientRect().top <= line) current = item.href;
+    if (el.getBoundingClientRect().top <= line) current = hash;
   }
 
   return current;
@@ -77,6 +84,14 @@ export function scrollToSection(hash: string, onSettled?: () => void) {
   });
 }
 
+export function isHomePath(pathname = window.location.pathname) {
+  return pathname === "/";
+}
+
+/** In-page hash on the homepage, including `/#section` form. */
 export function isInPageHash(href: string | null): href is string {
-  return !!href && href.startsWith("#") && href.length > 1;
+  if (!href) return false;
+  const hash = hashFromHref(href);
+  if (!hash || hash.length < 2) return false;
+  return href.startsWith("#") || href.startsWith("/#");
 }

@@ -41,7 +41,11 @@ export default function CompanyIntro() {
             Every business has its own way of working. We build software around
             those realities — not around generic templates. We study how a
             business actually operates, then design products and systems that
-            bring its people, data, and operations into one coherent whole.
+            bring its people, data, and operations into one coherent whole.{" "}
+            <a href="/prism" className="text-fg underline underline-offset-4">
+              Prism
+            </a>{" "}
+            is the field-operations product for equipment-service teams.
           </p>
 
           <div className="mt-8 lg:mt-12">

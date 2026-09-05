@@ -62,7 +62,6 @@ export default function Hero() {
             <p
               className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-6 sm:text-lg"
               data-hero-copy
-              style={{ opacity: 0 }}
             >
               CoreState designs and builds software products and digital
               solutions that connect people, processes, data, and operations.

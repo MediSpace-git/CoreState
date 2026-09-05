@@ -1,12 +1,17 @@
-import { SiteShell } from "@prism/components/layout/SiteShell";
-import { companyContact, routes, siteConfig } from "@prism/config/content";
 import Link from "next/link";
+import { SiteShell } from "@prism/components/layout/SiteShell";
+import { PageBreadcrumbs } from "@prism/components/layout/PageBreadcrumbs";
+import { companyContact, routes, siteConfig } from "@prism/config/content";
+import { JsonLd } from "@/components/JsonLd";
+import { mediVastOrganizationJsonLd, prismCrumbs } from "@/lib/json-ld";
 
 export function ContactPage() {
   return (
     <SiteShell>
+      <JsonLd data={mediVastOrganizationJsonLd()} />
       <section className="bg-[var(--ink)] px-5 pt-28 pb-24 md:px-8 md:pt-32">
         <div className="mx-auto max-w-[720px]">
+          <PageBreadcrumbs items={[...prismCrumbs.contact]} />
           <p className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.22em] text-[var(--signal)] uppercase">
             Contact
           </p>

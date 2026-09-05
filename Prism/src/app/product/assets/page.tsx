@@ -1,11 +1,9 @@
-import type { Metadata } from "next";
 import { assetsPage } from "@prism/config/content";
 import { FeaturePage } from "@prism/features/product/FeaturePage";
+import { prismCrumbs } from "@/lib/json-ld";
+import { pageMetadata, prismSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: assetsPage.title,
-  description: assetsPage.description,
-};
+export const metadata = pageMetadata(prismSeo.assets);
 
 export default function Page() {
   return (
@@ -14,6 +12,7 @@ export default function Page() {
       features={assetsPage.features}
       workflow={assetsPage.workflow}
       note={assetsPage.note}
+      crumbs={[...prismCrumbs.assets]}
     />
   );
 }

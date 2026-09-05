@@ -1,1 +1,1 @@
-export { default } from "@prism/app/page";
+export { default, metadata } from "@prism/app/page";

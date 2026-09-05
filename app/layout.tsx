@@ -1,12 +1,37 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { fontVariables } from "@/lib/fonts";
+import {
+  SITE_NAME,
+  getCanonicalOrigin,
+  homeSeo,
+} from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CoreState — Software Products & Solutions",
-  description:
-    "CoreState designs and builds software products and digital solutions that connect people, processes, data, and operations.",
+  metadataBase: new URL(getCanonicalOrigin()),
+  title: {
+    default: homeSeo.title,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: homeSeo.description,
+  applicationName: SITE_NAME,
+  icons: {
+    icon: [{ url: "/brand/corestateLogoLight.png", type: "image/png" }],
+    apple: "/brand/corestateLogoLight.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: SITE_NAME,
+    title: homeSeo.title,
+    description: homeSeo.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeSeo.title,
+    description: homeSeo.description,
+  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,7 +49,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-bg text-fg">
         <noscript>
-          <style>{`.js [data-reveal],.js [data-stagger],.js [data-field]{opacity:1}`}</style>
+          <style>
+            {`.js [data-reveal],.js [data-stagger],.js [data-field],.js [data-proc-step],.js [data-eco-phase],.js [data-hero-copy]{opacity:1!important;transform:none!important}`}
+          </style>
         </noscript>
         <div className="page-grid hidden lg:block" aria-hidden="true">
           <span />

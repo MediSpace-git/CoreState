@@ -11,10 +11,16 @@ import Process from "@/components/Process";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { coreStateGraph } from "@/lib/json-ld";
+import { homeSeo, pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata(homeSeo);
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={coreStateGraph()} />
       <Navbar />
       <main>
         <Hero />
