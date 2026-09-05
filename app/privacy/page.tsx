@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           <div className="mt-10 space-y-5 text-sm leading-relaxed text-muted">
             <p>
               This page covers the public CoreState marketing website at
-              www.corestateai.com. It is not the privacy notice for a signed-in
+              corestateai.com. It is not the privacy notice for a signed-in
               Prism tenant.
             </p>
             <p>

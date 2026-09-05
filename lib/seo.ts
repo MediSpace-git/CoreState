@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 /** Public production origin. Override with NEXT_PUBLIC_SITE_URL (no trailing slash). */
-export const PRODUCTION_ORIGIN = "https://www.corestateai.com";
+export const PRODUCTION_ORIGIN = "https://corestateai.com";
 
 export const SITE_NAME = "CoreState";
 export const SITE_TAGLINE = "Software products and solutions";
